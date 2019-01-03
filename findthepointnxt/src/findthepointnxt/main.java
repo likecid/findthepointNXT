@@ -123,6 +123,19 @@ public class main {
 			}
 				break;
 
+			case 100: {
+				drive();
+				while(ColorS.getColorID() != 1) {
+					
+				}
+				stop();
+				try {
+					write(50);
+				} catch (IOException e) {
+
+				}
+			}
+				break;
 			}
 
 			if (end == true) {
@@ -133,6 +146,18 @@ public class main {
 
 		}
 
+	}
+
+	public static void drive() {
+		Motor.B.setSpeed(50);
+		Motor.C.setSpeed(50);
+		Motor.B.forward();
+		Motor.C.forward();
+	}
+	
+	public static void stop() {
+		Motor.B.stop(true);
+		Motor.C.stop(true);
 	}
 
 	public static int read() throws IOException {
