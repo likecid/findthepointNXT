@@ -125,17 +125,28 @@ public class main {
 
 			case 100: {
 				drive();
-				while(ColorS.getColorID() != 1) {
-					
-				}
-				stop();
-				try {
-					write(50);
-				} catch (IOException e) {
+				while(true) {
+					if(ColorS.getColorIndexNumber() == 3 || ColorS.getColorIndexNumber() == 2) {
+						stop();
+						try {
+							write(200); // Found green point, finish sequence
+						} catch (IOException e) {
 
+						}
+					}
+					if(ColorS.getColorIndexNumber() == 5 || ColorS.getColorIndexNumber() == 4) {
+						stop();
+						try {
+							write(50); // found red line, waiting for new direction
+						} catch (IOException e) {
+
+						}
+						break;
+					}
 				}
 			}
 				break;
+
 			}
 
 			if (end == true) {
@@ -159,6 +170,7 @@ public class main {
 		Motor.B.stop(true);
 		Motor.C.stop(true);
 	}
+	
 
 	public static int read() throws IOException {
 		return dataInputStream.read();
